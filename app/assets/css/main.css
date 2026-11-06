@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@theme { --font-sans: "Arial", "Helvetica Neue", sans-serif; --font-serif: "Georgia", "Times New Roman", serif; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button, select { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 2px solid #987448; outline-offset: 4px; }
+::selection { background: #e5d6c4; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
