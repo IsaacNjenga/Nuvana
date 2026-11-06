@@ -13,7 +13,7 @@ function placeOrder() {
 }
 usePageSeo(
   "Your Shopping Bag",
-  "Your favourite Nuvana Glitter jewellery, all in one place. Review your bag and try our simple demonstration checkout.",
+  "Your favourite Nuvana Glitter jewellery, all in one place. Review your bag and checkout to complete your order.",
   "/cart",
 );
 useSeoMeta({ robots: "noindex, follow" });
@@ -36,8 +36,7 @@ useSeoMeta({ robots: "noindex, follow" });
       <span class="text-5xl text-[#987448]">✧</span>
       <h2 class="mt-5 font-serif text-3xl">Thank you, {{ name }}.</h2>
       <p class="mt-4 text-sm leading-7 text-[#756b6e]">
-        Your order for {{ money(orderTotal) }} is complete. This was a demo: no
-        payment was taken, no email was sent, and no order will be shipped.
+        Your order for {{ money(orderTotal) }} is complete.
       </p>
       <NuxtLink
         to="/"
@@ -122,7 +121,7 @@ useSeoMeta({ robots: "noindex, follow" });
           <span>Subtotal</span><span>{{ money(total) }}</span>
         </div>
         <div class="mt-4 flex justify-between text-xs text-[#756b6e]">
-          <span>Delivery</span><span>Demo · no shipping</span>
+          <span>Delivery</span>
         </div>
         <div
           class="mt-6 flex justify-between border-t border-[#d9cdbf] pt-5 text-lg"
@@ -137,10 +136,7 @@ useSeoMeta({ robots: "noindex, follow" });
           Checkout
         </button>
         <form v-else class="mt-7 space-y-4" @submit.prevent="placeOrder">
-          <p class="text-xs leading-5 text-[#756b6e]">
-            Try the checkout. No payment details needed.
-          </p>
-          <label class="block text-xs"
+                   <label class="block text-xs"
             >Your name<input
               v-model.trim="name"
               required
@@ -156,7 +152,7 @@ useSeoMeta({ robots: "noindex, follow" });
               autocomplete="email"
               class="mt-2 w-full border border-[#cdbfac] bg-[#faf8f4] p-3 text-sm" /></label
           ><button class="w-full bg-[#452637] px-5 py-4 text-sm text-white">
-            Place demo order</button
+            Place order</button
           ><button
             type="button"
             class="w-full text-xs underline"
