@@ -20,3 +20,4 @@ export const seedProducts: Product[] = [
   { slug: 'evermore-ring', name: 'Evermore Ring', category: 'Rings', price: 2200, image: 'photo-1603561591411-07134e71a2a9', alt: 'Gold ring with a delicate decorative setting', description: 'An everyday keepsake. An elegant ring with a subtle sparkle, created for the moments you want to hold onto.', material: 'Gold-plated sterling silver · adjustable band', stock: 7 },
   { slug: 'serene-chain-bracelet', name: 'Serene Chain Bracelet', category: 'Bracelets', price: 2100, image: 'photo-1573408301185-9146fe634ad0', alt: 'Fine gold chain jewellery with polished links', description: 'Simple, considered, endlessly wearable. This fine chain bracelet feels as good with a white tee as it does with your favourite dress.', material: '18k gold-plated brass · 16 cm with 4 cm extender', stock: 18 }
 ]
+

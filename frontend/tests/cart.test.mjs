@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { stripTypeScriptTypes } from 'node:module'
 import { ref, computed } from 'vue'
-import { seedProducts } from '../shared/products.ts'
+const testProducts = [{ slug: 'test-hoops', name: 'Test Hoops', price: 2400, stock: 20 }, { slug: 'test-necklace', name: 'Test Necklace', price: 3200, stock: 16 }]
 
 const source = (await readFile(new URL('../app/composables/useCart.ts', import.meta.url), 'utf8')).replace(/^import type .*$/m, '').replaceAll('import.meta.client', 'true')
 const { useCart } = await import(`data:text/javascript;base64,${Buffer.from(stripTypeScriptTypes(source)).toString('base64')}`)
@@ -17,7 +17,7 @@ function setup(saved = '[]', broken = false) {
 }
 test('cart merges additions, caps stock, computes totals and persists removal', () => {
   const { cart, storage } = setup()
-  const product = { ...seedProducts[0], stock: 3 }
+  const product = { ...testProducts[0], stock: 3 }
   cart.add(product, 2); cart.add(product, 2)
   assert.equal(cart.items.value.length, 1)
   assert.equal(cart.count.value, 3)
@@ -29,7 +29,7 @@ test('cart merges additions, caps stock, computes totals and persists removal', 
   assert.deepEqual(JSON.parse(storage.get('nuvana-cart')), [])
 })
 test('cart restores valid storage, ignores invalid entries, and clears checkout bag', () => {
-  const saved = JSON.stringify([{ product: seedProducts[1], quantity: 2 }, { product: seedProducts[0], quantity: -1 }, { bad: true }])
+  const saved = JSON.stringify([{ product: testProducts[1], quantity: 2 }, { product: testProducts[0], quantity: -1 }, { bad: true }])
   const { cart } = setup(saved)
   cart.hydrate(); cart.hydrate()
   assert.equal(cart.count.value, 2)
@@ -39,9 +39,11 @@ test('cart restores valid storage, ignores invalid entries, and clears checkout 
 test('cart tolerates blocked and malformed storage and rejects sold-out products', () => {
   for (const [saved, broken] of [['not JSON', false], ['[]', true]]) {
     const { cart } = setup(saved, broken)
-    cart.add({ ...seedProducts[0], stock: 0 })
+    cart.add({ ...testProducts[0], stock: 0 })
     assert.equal(cart.count.value, 0)
-    cart.add(seedProducts[1])
+    cart.add(testProducts[1])
     assert.equal(cart.count.value, 1)
   }
 })
+
+
